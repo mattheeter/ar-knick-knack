@@ -1,20 +1,24 @@
+using System;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 
 public class WeatherAPI : MonoBehaviour
 {
      public GameObject weatherTextObject;
+     public GameObject rain;
     
     string url = "https://api.openweathermap.org/data/2.5/weather?lat=26.2306&lon=-80.1251&APPID=c8a4bfd031b20b5c794089f1ade0288b&units=imperial";
+    private GameObject rainObject;
 
     void Start()
     {
-       InvokeRepeating("GetDataFromWeb", 2f, 10f);
+        InvokeRepeating("GetDataFromWeb", 2f, 10f);
     }
 
-     void GetDataFromWeb()
+    void GetDataFromWeb()
    {
        StartCoroutine(GetRequest(url));
    }
@@ -42,6 +46,20 @@ public class WeatherAPI : MonoBehaviour
                 string conditions = webRequest.downloadHandler.text.Substring(startConditions+7, (endConditions-startConditions-8));
 
                 weatherTextObject.GetComponent<TextMeshProUGUI>().text = easyTempF + "°F\n" + conditions;
+                
+                Destroy(rainObject);
+                
+                if (
+                    conditions == "Rain" || 
+                    conditions == "Thunderstorm" || 
+                    conditions == "Drizzle" ||
+                    conditions == "Tornado"
+                    )
+                {
+                    // Add the rain to the scene based on if the above conditions are met
+                    // https://openweathermap.org/weather-conditions
+                    rainObject = Instantiate(rain);
+                }
             }
         }
     }
