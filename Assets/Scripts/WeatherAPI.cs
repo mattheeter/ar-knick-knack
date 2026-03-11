@@ -10,7 +10,7 @@ public class WeatherAPI : MonoBehaviour
      public GameObject weatherTextObject;
      public GameObject rain;
     
-    string url = "https://api.openweathermap.org/data/2.5/weather?lat=26.2306&lon=-80.1251&APPID=c8a4bfd031b20b5c794089f1ade0288b&units=imperial";
+    public string url;
     private GameObject rainObject;
 
     void Start()
