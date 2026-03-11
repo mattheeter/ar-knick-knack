@@ -18,7 +18,6 @@ public class RingBox : MonoBehaviour
     {
         // If the cube is moved close to the camera, open the box
         float distance = Vector3.Distance(lid.position, cam.position);
-        Debug.Log(distance);
         
         if (distance < 5)
         {
