@@ -53,8 +53,6 @@ public class WeatherAPI : MonoBehaviour
                 weatherTextObject.GetComponent<TextMeshProUGUI>().text = easyTempF + "°F\n" + conditions;
                 
                 Destroy(rainObject);
-                conditions = "Rain";
-                
                 if (
                     conditions == "Rain" || 
                     conditions == "Thunderstorm" || 
