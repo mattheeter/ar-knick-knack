@@ -1,0 +1,2 @@
+# AR-Knick-Knack
+This repo contains the code, assets, etc. for CS-5136 project 1: AR-Knick-Knack. It is strcutered as a typical Unity project, and to run the application simply open the root folder in Unity. 
