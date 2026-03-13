@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 
 public class WeatherAPI : MonoBehaviour
 {
@@ -12,10 +10,17 @@ public class WeatherAPI : MonoBehaviour
     
     public string url;
     private GameObject rainObject;
+    private GameObject cube;
 
-    void Start()
+    void OnEnable()
     {
         InvokeRepeating("GetDataFromWeb", 2f, 10f);
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke("GetDataFromWeb");
+        Destroy(rainObject);
     }
 
     void GetDataFromWeb()
@@ -48,6 +53,7 @@ public class WeatherAPI : MonoBehaviour
                 weatherTextObject.GetComponent<TextMeshProUGUI>().text = easyTempF + "°F\n" + conditions;
                 
                 Destroy(rainObject);
+                conditions = "Rain";
                 
                 if (
                     conditions == "Rain" || 
